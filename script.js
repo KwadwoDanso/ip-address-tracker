@@ -62,9 +62,7 @@ const marker = L.marker([0, 0], { icon: locationIcon }).addTo(map);
 
 
 // SECTION 3: API KEY
-// IMPORTANT: Replace the placeholder with your real Geo.ipify key
-// Get a free key at: https://geo.ipify.org/
-// Free plan = 1,000 credits, each request costs 2 credits
+
 const API_KEY = "at_Cj1Im1naGY0esnxLj0N3ys6fhlPaV";
 
 // The "country,city" endpoint returns city-level fields:
@@ -126,7 +124,6 @@ function buildApiUrl(query) {
 // async/await:
 //   async = this function will do waiting
 //   await = pause here until the data arrives
-//
 // fetch(url) = send an HTTP request to the API
 // response.ok = true if status 200-299, false if 400+
 // response.json() = parse the JSON body into a JS object
@@ -193,7 +190,6 @@ function renderMap(data) {
 // SECTION 9: STATUS MESSAGES
 // Updates the aria-live="polite" paragraph.
 // Screen readers announce this text automatically.
-
 function setStatus(message) {
     statusMessage.textContent = message;
 }
@@ -203,8 +199,8 @@ function setStatus(message) {
 // SECTION 10: MASTER LOAD FUNCTION
 // Runs the full flow: fetch → render cards → move map
 // try/catch:
-//   try = "attempt this code"
-//   catch = "if anything fails, do this instead"
+//   try 
+//   catch 
 //   Prevents the app from crashing
 
 async function loadLocation(query) {
@@ -249,7 +245,7 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    // All good — run the search
+    // Run the search
     loadLocation(query);
 });
 
