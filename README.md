@@ -12,6 +12,8 @@ This is my solution to the [IP address tracker challenge on Frontend Mentor](htt
 
 ## Overview
 
+An application that tracks and displays the location of a given IP address using the IP Geolocation API by IPify  and LeafletJS  for map rendering.
+
 ### The challenge
 
 Users should be able to:
@@ -28,9 +30,19 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub Repository](https://github.com/KwadwoDanso/ip-address-tracker)
-- Live Site URL: [Live Demo](YOUR_NETLIFY_URL_HERE)
+- Live Site URL: [Live Demo](https://kd-ip-addy.netlify.app/)
 
 ## My process
+- Built semantic HTML with header, search form, detail cards, and map container
+- Added CSS using Flexbox for the search row and CSS Grid for the detail cards
+- Added responsive media queries for mobile, tablet, and desktop
+- Initialized Leaflet map with tile layer and marker
+- Connected Geo.ipify API with async/await fetch
+- Rendered API response data into the four info cards
+- Connected API coordinates to Leaflet map to move the marker
+- Added form submit handler with error handling
+- Added accessibility: skip link, visible label, aria-live status, focus styles
+- Deployed to Netlify
 
 ### Built with
 
