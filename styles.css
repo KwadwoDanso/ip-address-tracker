@@ -1,12 +1,23 @@
 /* 
    IP ADDRESS TRACKER — styles.css
-   Version: Base styles (no responsive media queries yet)
    
-   FLEXBOX: body layout, search row
-   CSS GRID: detail cards
-   */
+   Design specs from Frontend Mentor style guide:
+   - Mobile: 375px, Desktop: 1440px
+   - Font: Rubik (400, 500, 700)
+   - Input font size: 18px
+   - Very Dark Gray: hsl(0, 0%, 17%)
+   - Dark Gray: hsl(0, 0%, 59%)
+   
+   Layout strategy:
+   - FLEXBOX: body layout, search row, attribution
+   - CSS GRID: the four detail cards
+   - Mobile-first: base = phone, media queries add wider layouts
+    */
 
-/* ===== RESET ===== */
+
+/*  RESET 
+   Removes default browser spacing.
+   border-box means padding is included inside the element's width. */
 *,
 *::before,
 *::after {
@@ -15,26 +26,40 @@
     box-sizing: border-box;
 }
 
-/* ===== CSS VARIABLES ===== */
+
+/* CSS VARIABLES 
+   Defined once, used everywhere with var(--name).
+   Colors come directly from the Frontend Mentor style guide. */
 :root {
     --very-dark-gray: hsl(0, 0%, 17%);
+    /* text color */
     --dark-gray: hsl(0, 0%, 59%);
+    /* label color */
     --white: #ffffff;
     --focus-ring: hsl(228, 45%, 44%);
+    /* blue for focus outlines */
     --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== BODY — FLEXBOX column ===== */
+
+/*  BODY 
+   FLEXBOX column layout — header on top, map fills remaining space.
+   min-height: 100vh ensures the page fills the full screen height. */
 body {
     font-family: "Rubik", sans-serif;
+    /* from the style guide */
     color: var(--very-dark-gray);
     background: var(--white);
     min-height: 100vh;
     display: flex;
+    /* FLEXBOX */
     flex-direction: column;
+    /* stack children vertically */
 }
 
-/* ===== SKIP LINK ===== */
+
+/*  SKIP LINK 
+   Accessibility: hidden until keyboard Tab, then appears at top-left. */
 .skip-link {
     position: absolute;
     left: -9999px;
@@ -52,7 +77,10 @@ body {
     border-radius: 0 0 0.5rem 0;
 }
 
-/* ===== SCREEN-READER ONLY ===== */
+
+/* SCREEN-READER ONLY 
+   Visually hidden but accessible to screen readers.
+   Used for labels and headings that provide context. */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -65,12 +93,16 @@ body {
     border: 0;
 }
 
-/* ===== HEADER / HERO ===== */
+
+/*  HEADER / HERO 
+   Uses the Frontend Mentor background pattern image.
+   The extra bottom padding creates space for the cards to overlap. */
 .hero {
     background: url("./images/pattern-bg-mobile.png") no-repeat center / cover;
     text-align: center;
     padding: 1.5rem 1.5rem 9rem;
     position: relative;
+    /* so cards can be positioned relative to this */
     z-index: 5;
 }
 
@@ -79,64 +111,81 @@ body {
     font-size: 1.6rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
 }
 
-/* ===== SEARCH FORM ===== */
+
+/*  SEARCH FORM  */
 #search-form {
     max-width: 34rem;
     margin: 0 auto 1.5rem;
 }
 
-/* ===== SEARCH ROW — FLEXBOX ===== */
+/*  SEARCH ROW — FLEXBOX 
+   Input and button sit side by side.
+   flex: 1 on the input makes it fill all available space. */
 .search-row {
     display: flex;
+    /* FLEXBOX */
     border-radius: 15px;
     overflow: hidden;
+    /* clips children to rounded corners */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Input — matches the 18px font size from the style guide */
 .search-row input {
     flex: 1;
+    /* takes all remaining width */
     padding: 1.1rem 1.5rem;
     border: none;
     font-size: 18px;
+    /* from style guide */
     font-family: "Rubik", sans-serif;
     color: var(--very-dark-gray);
     outline: none;
     min-width: 0;
+    /* prevents overflow on small screens */
 }
 
+/* Placeholder styling */
 .search-row input::placeholder {
     color: var(--dark-gray);
     font-size: 18px;
     font-family: "Rubik", sans-serif;
 }
 
+/* Focus ring on input — keyboard users need to see where they are */
 .search-row input:focus {
     box-shadow: inset 0 0 0 3px var(--focus-ring);
 }
 
+/* Arrow button — black background, matches the Frontend Mentor design */
 .search-row button {
     background: var(--very-dark-gray);
     border: none;
     padding: 1.1rem 1.5rem;
     cursor: pointer;
     display: flex;
+    /* centers the arrow icon */
     align-items: center;
     justify-content: center;
     transition: background 0.2s ease;
 }
 
+/* Hover state — slightly lighter, as shown in active-states.jpg */
 .search-row button:hover {
     background: hsl(0, 0%, 35%);
 }
 
+/* Focus ring on button */
 .search-row button:focus-visible {
     outline: 3px solid var(--white);
     outline-offset: -3px;
 }
 
-/* ===== STATUS MESSAGE ===== */
+
+/* STATUS MESSAGE */
 .status-text {
     color: var(--white);
     font-size: 0.85rem;
@@ -144,20 +193,31 @@ body {
     opacity: 0.9;
 }
 
-/* ===== DETAIL CARDS WRAPPER ===== */
+
+/*  DETAIL CARDS WRAPPER 
+   Absolutely positioned at the bottom of the header so the cards
+   sit half in the header and half over the map — matching the design. */
 .details-wrapper {
     position: absolute;
     left: 1rem;
     right: 1rem;
     bottom: 0;
     transform: translateY(50%);
+    /* pushes half below the header */
     z-index: 1000;
+    /* sits above the map */
 }
 
-/* ===== DETAILS GRID — CSS GRID ===== */
+
+/*  DETAILS GRID — CSS GRID 
+   Mobile: 1 column, centered text.
+   Tablet: 2 columns.
+   Desktop: 4 equal columns with vertical dividers. */
 .details-grid {
     display: grid;
+    /* CSS GRID */
     grid-template-columns: 1fr;
+    /* mobile: single column */
     gap: 0;
     background: var(--white);
     border-radius: 15px;
@@ -166,12 +226,14 @@ body {
     max-width: 1110px;
     margin: 0 auto;
     text-align: center;
+    /* centered on mobile */
 }
 
 .detail-card {
     padding: 0.6rem 0.5rem;
 }
 
+/* Card label — small uppercase text matching the design */
 .detail-card dt {
     font-size: 0.625rem;
     text-transform: uppercase;
@@ -181,28 +243,36 @@ body {
     margin-bottom: 0.4rem;
 }
 
+/* Card value — bold text showing the API data */
 .detail-card dd {
     margin: 0;
     font-size: 1.25rem;
     font-weight: 500;
     color: var(--very-dark-gray);
     word-break: break-word;
+    /* prevents long values from overflowing */
 }
 
-/* ===== MAP ===== */
+
+/*  MAP
+   main fills all remaining vertical space via flex: 1.
+   The map div fills its parent completely. */
 main {
     flex: 1;
+    /* FLEXBOX: fills remaining height */
     position: relative;
     z-index: 1;
 }
 
+/* CRITICAL: Leaflet requires a defined height. Without this, the map is invisible. */
 #map {
     width: 100%;
     height: 100%;
     min-height: 400px;
 }
 
-/* ===== ATTRIBUTION ===== */
+
+/* ATTRIBUTION  */
 .attribution {
     font-size: 11px;
     text-align: center;
@@ -214,8 +284,84 @@ main {
     color: var(--focus-ring);
 }
 
-/* ===== FOCUS STYLES ===== */
+
+/*  GLOBAL FOCUS STYLES 
+   Visible ring on all interactive elements for keyboard users. */
 a:focus-visible {
     outline: 3px solid var(--focus-ring);
     outline-offset: 2px;
+}
+
+
+/*
+   RESPONSIVE BREAKPOINTS
+ */
+
+/* ===== TABLET — 600px and up ===== */
+@media (min-width: 600px) {
+    .hero {
+        padding: 2rem 2rem 9rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Cards become 2 columns on tablet */
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        text-align: left;
+        padding: 2rem 1.5rem;
+    }
+
+    .detail-card {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* ===== DESKTOP — 900px and up ===== */
+@media (min-width: 900px) {
+
+    /* Switch to the desktop background pattern */
+    .hero {
+        background-image: url("./images/pattern-bg-desktop.png");
+        padding: 2rem 2rem 9rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .details-wrapper {
+        left: 2rem;
+        right: 2rem;
+    }
+
+    /* Cards become 4 columns on desktop — matching the design exactly */
+    .details-grid {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 2.25rem 2rem;
+        gap: 0;
+    }
+
+    /* Vertical divider lines between cards */
+    .detail-card:not(:last-child) {
+        border-right: 1px solid hsla(0, 0%, 59%, 0.3);
+    }
+
+    .detail-card {
+        padding: 0.5rem 2rem;
+    }
+
+    .detail-card dt {
+        font-size: 0.7rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .detail-card dd {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
 }
