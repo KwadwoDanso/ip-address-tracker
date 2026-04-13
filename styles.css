@@ -1,0 +1,108 @@
+{
+    box-szing: border-box;
+}
+body{
+    margin: 0;
+}
+header{
+    height: 320px;
+    background-image: url(images/pattern-bg-desktop.png);
+    background-size: cover;
+    padding-top: 20px;
+    padding-inline: 60px;
+    position: relative;
+    z-index: 5;
+}
+
+h1{
+    font-size: 3rem;
+    font-family: Rubik;
+    color: white;
+    font-weight: 600;
+    margin-top: 0;
+    text-align: center;
+}
+.search-ip{
+    max-width: 700px;
+    display: flex;
+    height: 70px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-inline: auto;
+}
+
+input{
+    width: 87%;
+    padding-inline: 20px;
+    font-size: 22px;
+    font-family: Rubik;
+    color: black;
+}
+
+input:focus{
+    outline: none;
+    border: none;
+}
+input::placeholder{
+    color: hsla(0,0%,59%,0.938);
+    font-size: 22px;
+    font-family: Rubik;
+}
+.arrow{
+    width: 13%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.data-container{
+    background-color: rbg(255,255,255);
+    max-width: 1220px;
+    height: 140px;
+    position: relative;
+    margin-inline: auto;
+    top: 60px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.281);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 40px;
+}
+.data{
+    width: 250px;
+}
+.data+.data{
+    border-left: 1px solid rgba(128, 128, 128, 0.439);
+}
+.info-title{
+    font-size:18px;
+    text-align: center;
+    font-family: Rubik;
+    font-weight: 600;
+    color: hsl(0, 0%, 59%);
+}
+.info{
+    font-size: 22px;
+    font-family: Rubik;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: center;
+}
+#map{
+    height: 80vh;
+}
+
+@media(max-width: 1000px){
+    .search-ip{
+        max-width: 600px;
+    }
+    h1{
+        font-size: 2.4rem;
+    }
+    .data-container{
+        height: 130px;
+        padding-inline: 20px;
+    }
+}

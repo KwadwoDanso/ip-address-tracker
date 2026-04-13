@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+
+  <title>IP Address Tracker</title>
+
+  <!-- Google Font: Rubik — the font specified in the style guide -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS — MUST be loaded before the map renders. -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="script.js" defer></script>
+
+  <!-- Our CSS — loaded after Leaflet so our styles take priority -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <a class="skip-link" href="#map-section">Skip to map</a>
+
+ 
+  <header class="hero">
+    <h1>IP Address Tracker</h1>
+
+    <!--  SEARCH FORM
+         role="search" creates a search landmark for screen readers.
+         Users with assistive tech can jump directly to this area. -->
+    <form id="search-form" role="search" aria-label="Search by IP address or domain">
+
+      <label for="query" class="sr-only">IP address or domain</label>
+
+      <!-- Search row — uses FLEXBOX to place input and button side by side -->
+      <div class="search-row">
+        <input id="query" name="query" type="search" placeholder="Search for any IP address or domain"
+          autocomplete="off" spellcheck="false" aria-describedby="search-help" />
+
+        <!-- The arrow button — uses the Frontend Mentor SVG asset.
+             aria-label gives this icon-only button a name for screen readers. -->
+        <button type="submit" aria-label="Search">
+          <img src="./images/icon-arrow.svg" alt="" />
+        </button>
+      </div>
+
+     
+      <p id="search-help" class="sr-only">
+        Enter an IP address like 8.8.8.8 or a domain like google.com
+      </p>
+    </form>
+
+    <!-- =============================
+         STATUS MESSAGE (Accessibility)
+         =============================
+         aria-live="polite" means screen readers announce changes here
+         WITHOUT interrupting the user. We update this via JavaScript
+         to say "Loading...", "Location updated", or error messages. -->
+    <p id="status-message" class="status-text" aria-live="polite"></p>
+
+    <!-- =============================
+         DETAIL CARDS
+         =============================
+         Positioned inside the header so we can use negative margin
+         to make the cards overlap between the header and the map.
+
+         <dl> = definition list — semantically correct for label/value pairs.
+         <dt> = the label (e.g., "IP ADDRESS")
+         <dd> = the value (e.g., "192.212.174.101") -->
+    <div class="details-wrapper">
+      <dl class="details-grid" aria-label="IP address details">
+        <div class="detail-card">
+          <dt>IP Address</dt>
+          <dd id="ip-value">—</dd>
+        </div>
+
+        <div class="detail-card">
+          <dt>Location</dt>
+          <dd id="location-value">—</dd>
+        </div>
+
+        <div class="detail-card">
+          <dt>Timezone</dt>
+          <dd id="timezone-value">—</dd>
+        </div>
+
+        <div class="detail-card">
+          <dt>ISP</dt>
+          <dd id="isp-value">—</dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- MAP
+       <main> is a semantic landmark — the primary content area.
+       Leaflet renders the interactive map inside the #map div.
+       The div MUST have a height in CSS or Leaflet won't show it. -->
+  <main id="map-section">
+    <div id="map" role="application" aria-label="Map showing IP address location"></div>
+  </main>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">Frontend
+      Mentor</a>.
+    Coded by <a href="#">Kwadwo Danso</a>.
+  </footer>
+</body>
+
+</html>
