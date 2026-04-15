@@ -28,7 +28,7 @@
 
 
 /* CSS VARIABLES 
-   Defined once, used everywhere with var(--name).
+   Defined once, used everywhere
    Colors come directly from the Frontend Mentor style guide. */
 :root {
     --very-dark-gray: hsl(0, 0%, 17%);
@@ -264,7 +264,7 @@ main {
     z-index: 1;
 }
 
-/* CRITICAL: Leaflet requires a defined height. Without this, the map is invisible. */
+/*  Leaflet requires a defined height. Without this, the map is invisible. */
 #map {
     width: 100%;
     height: 100%;
@@ -295,9 +295,8 @@ a:focus-visible {
 
 /*
    RESPONSIVE BREAKPOINTS
- */
+ TABLET — 600px and up  */
 
-/* ===== TABLET — 600px and up ===== */
 @media (min-width: 600px) {
     .hero {
         padding: 2rem 2rem 9rem;
@@ -320,7 +319,7 @@ a:focus-visible {
     }
 }
 
-/* ===== DESKTOP — 900px and up ===== */
+/*DESKTOP — 900px and up */
 @media (min-width: 900px) {
 
     /* Switch to the desktop background pattern */
